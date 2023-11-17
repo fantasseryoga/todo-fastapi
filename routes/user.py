@@ -12,7 +12,7 @@ config.read("settings/settings.ini")
 user = APIRouter()
 
 
-@user.post('/user-login')
+@user.post('/log')
 async def login_user(user: User):
     users = db["users"]
     cursor = users.find({"name": user.name}, limit=1)
@@ -36,7 +36,7 @@ async def login_user(user: User):
     }
 
 
-@user.post('/user-reg/')
+@user.post('/reg')
 async def create_user(user: User):
     users = db["users"]
     

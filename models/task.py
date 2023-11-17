@@ -32,14 +32,14 @@ class Task(BaseModel):
     
     @validator('priority')
     def priority_range_check(v: int):
-        if (1 <= v <= 10) == False:
-            raise ValueError('Priority should be in 1-10 range')
+        if (1 <= v <= 5) == False:
+            raise ValueError('Priority should be in 1-5 range')
         
         return v
         
     @validator('date')
     def date_check(v: datetime):
-        if utc.localize(v) < utc.localize(datetime.now()):
+        if v.replace(tzinfo=utc) < datetime.now().replace(tzinfo=utc):
             raise ValueError('Date should be in future')
         
         return v

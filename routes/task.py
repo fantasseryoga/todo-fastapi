@@ -19,7 +19,7 @@ config.read("settings/settings.ini")
 task = APIRouter()
 
 
-@task.post('/tasks-by-user/')
+@task.post('/tasks-by-user')
 async def get_user_tasks(search: TasksSearch | None = TasksSearch, user: userEntity = Depends(get_current_user)):
     try:
         tasks = db["tasks"]
@@ -40,7 +40,7 @@ async def get_user_tasks(search: TasksSearch | None = TasksSearch, user: userEnt
     return tasksEntity(tasks_db)
 
 
-@task.put('/task')
+@task.put('')
 async def update_task(task: TaskUpdate, user: userEntity = Depends(get_current_user)):
     try:
         tasks = db["tasks"]
@@ -64,7 +64,7 @@ async def update_task(task: TaskUpdate, user: userEntity = Depends(get_current_u
     return taskEntity(task_db)
 
 
-@task.post('/task')
+@task.post('')
 async def create_task(task: Task, user: userEntity = Depends(get_current_user)):
     try:
         tasks = db["tasks"]

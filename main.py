@@ -15,8 +15,8 @@ from routes.user import user
 from routes.task import task
 
 app = FastAPI()
-app.include_router(user)
-app.include_router(task)
+app.include_router(user, prefix="/user")
+app.include_router(task, prefix="/task")
 
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 30  # 30 minutes
