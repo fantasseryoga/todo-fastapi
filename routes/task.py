@@ -25,9 +25,9 @@ async def get_user_tasks(search: TasksSearch | None = TasksSearch, user: userEnt
         tasks = db["tasks"]
         
         if search:
-            cursor = tasks.find({"userId": str(user["id"]), "title": {"$regex": search.title if search.title else ""}, "status": search.status if search.status else {"$ne": "deleted"}})
+            cursor = tasks.find({"userId": str(user["id"]), "title": {"$regex": search.title if search.title else ""}, "status": search.status if search.status else {"$ne": "deleted"}}).sort("date", 1)
         else:
-            cursor = tasks.find({"userId": str(user["id"])})
+            cursor = tasks.find({"userId": str(user["id"])}).sort("date", 1)
 
 
         tasks_db = []
